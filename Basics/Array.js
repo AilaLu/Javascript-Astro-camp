@@ -65,12 +65,28 @@
 // console.log(exist(list, "c")); // true
 // console.log(exist(list, "z")); // false
 
-//.find() 可以找出第一個符合條件的值 >>印出12
-const list = [5, 12, 8, 130, 44];
-let find = list.find((ele) => ele > 10);
-console.log(find);
+// //.find() 可以找出第一個符合條件的值 >>印出12
+// const list = [5, 12, 8, 130, 44];
+// let find = list.find((ele) => ele > 10);
+// console.log(find);
 
-//.findIndex() 可以找出第一個符合條件的索引 >> 印出0
-const list1 = ["a", "b", "c", "d", "e", "a"];
-let findIndex = list1.findIndex((ele) => ele == "a");
-console.log(findIndex);
+// //.findIndex() 可以找出第一個符合條件的索引 >> 印出0
+// const list1 = ["a", "b", "c", "d", "e", "a"];
+// let findIndex = list1.findIndex((ele) => ele == "a");
+// console.log(findIndex);
+
+//解構陣列 用...展開
+const a = [1, 2, 3];
+const b = [4, 5, 6];
+const c = [7, 8, 9];
+const concat = a.concat(b).concat(c);
+const expandArray = [...a, ...b, ...c];
+console.log(concat);
+console.log(expandArray);
+
+//用...蒐集
+let marval = [superman, spiderman, ironman, aquaman];
+function getall(hero, ...rest) {
+  console.log();
+}
+getall();

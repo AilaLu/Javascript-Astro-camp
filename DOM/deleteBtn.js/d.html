@@ -1,4 +1,3 @@
-<!-- 這個HTML go live, 會在url:http://127.0.0.1:5500/hello.html 顯示Henlo,然後在網頁的檢視原始碼可以看到js.js的code  -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="html_linked.js"></script>
+    <script src="d.js" defer></script>
+    <link rel="stylesheet" href="d.css" />
   </head>
   <body>
-    <h1>Henlo</h1>
+    <div class="ad">
+      <p>I am here to annoy you :)</p>
+      <button id="remove-btn">X</button>
+    </div>
   </body>
 </html>
