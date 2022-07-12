@@ -75,18 +75,10 @@
 // let findIndex = list1.findIndex((ele) => ele == "a");
 // console.log(findIndex);
 
-//解構陣列 用...展開
-const a = [1, 2, 3];
-const b = [4, 5, 6];
-const c = [7, 8, 9];
-const concat = a.concat(b).concat(c);
-const expandArray = [...a, ...b, ...c];
-console.log(concat);
-console.log(expandArray);
-
-//用...蒐集
-let marval = [superman, spiderman, ironman, aquaman];
-function getall(hero, ...rest) {
-  console.log();
-}
-getall();
+// function swapElement() {
+//   const array = (["first", "second", "third", "fourth", "last"][
+//     (array[0], array[array.length - 1])
+//   ] = [array[array.length - 1], array[0]]);
+//   console.log(array);
+// }
+// swapElement();

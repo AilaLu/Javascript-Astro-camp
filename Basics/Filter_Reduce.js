@@ -77,7 +77,7 @@ const list = [1, 4, -3, 9, -2, 6, 7, 8];
 
 const max = list.reduce(function (acc, cv) {
   console.log(acc, cv);
-  if (cv < acc) {
+  if (cv > acc) {
     return cv;
   } else {
     return acc;

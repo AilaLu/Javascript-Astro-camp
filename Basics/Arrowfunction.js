@@ -1,3 +1,5 @@
+//arrow function在物件裡的時候parent object就是window
+
 const arr = [1, 2, 3, 4, 5];
 
 //這三個變數都是用.map回傳一個新陣列[ 2, 4, 6, 8, 10 ],

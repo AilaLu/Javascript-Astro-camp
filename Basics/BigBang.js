@@ -1,3 +1,5 @@
+//method mashup bigbangggg
+
 // const list = [1, 2, 3, 4, 5];
 // // 印出「大於 2」的「兩倍和」
 // //連續方法！大爆炸

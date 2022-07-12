@@ -59,7 +59,7 @@
 // // 範例：
 
 // const chars1 = ["a", "b", "c", "d", "f", "g"];
-// //a=97, b=98, c=99, d=100, e=101, f=102, g=103
+// //a=97, b=98, c=99, d=100, e=101, f=102, g=103, h = 104, i = 105
 // const chars2 = ["O", "Q", "R", "S"];
 
 // function missingChar(chars) {
@@ -156,16 +156,119 @@
 // // 想法1：先把每個位數變成陣列 用map把每個數平方＋變成字串, 再用reduce相加
 // // 想法2：先轉成字串, for loop對每個元素平方
 // //notes: JavaScript 字串是不變的，意思是說當字串被創造出來以後，你不可能修改它。所以需要另外開一個空字串
+// //想法3：變成陣列 每個元素都是數字 就可以用map(), 最後再轉回數字
 
 // function squareDigits(num) {
-//   str = num.toString();
-//   let square = "";
-//   for (let i = 0; i < str.length; i++) {
-//     square += (Number(str[i]) * Number(str[i])).toString();
-//   }
-//   return square;
+//   let numArray = num.toString().split(""); //變成每個位數的字串陣列[ '3', '2', '1', '2' ]
+//   let toNum = (ele) => Number(ele); //字串=>數字陣列
+//   let square = (ele) => ele * ele; //平方
+
+//   let result = numArray
+//     .map(toNum) //回傳一個新的數字陣列
+//     .map(square) //回傳一個平方後的陣列
+//     .join(""); //陣列合併回去字串
+//   return Number(result); //字串轉回原本的數字typeof number
 // }
 
 // console.log(squareDigits(3212)); // 印出 9414
 // console.log(squareDigits(2112)); // 印出 4114
 // console.log(squareDigits(387)); // 印出 96449
+
+// // 編號：006
+// // 程式語言：JavaScript
+// // 題目：找出在數字陣列裡跟其它元素不一樣的值
+// // 範例：
+
+// //想法1.: 取平均值 平均值差跟和大家不一樣的就是不一樣的值 用.find(avg-ele)
+// //想法1-1: 用.find(ele1-ele2 !=0) 如果是一樣的兩個ele相差===0
+// //想法2.: 用sort排好順序, 和大家不一樣的值不是第一個就是最後一個
+// function findDifferent(numbers) {
+//   let sort = numbers.sort((a, b) => a - b);
+//   if (sort[0] - sort[1] === 0) {
+//     // 如果是一樣的兩個ele相差===0 代表不一樣的是最後一個
+//     return sort[sort.length - 1]; //回傳最後一個元素
+//   } else {
+//     return sort[0]; //回傳第一個元素
+//   }
+// }
+
+// console.log(findDifferent([1, 1, 1, 1, 3, 1, 1, 1])); // 印出 3
+// console.log(findDifferent([2, 2, 2, 4, 2, 2])); // 印出 4
+// console.log(findDifferent([8, 3, 3, 3, 3, 3, 3, 3])); // 印出 8
+
+// // 編號：007
+// // 程式語言：JavaScript
+// // 題目：在某個數字陣列裡，可能藏有某個不合群的奇數或偶數，試著找出它！
+// // 範例：
+
+// //想法：
+// //用filter()找基數, 如果只有一個基數是不合群 return 唯一的基數, 不然就return唯一的偶數！
+
+// function findSomeDifferent(numbers) {
+//   let odd = numbers.filter((ele) => ele % 2 == 1);
+//   let even = numbers.filter((ele) => ele % 2 == 0);
+//   if (odd.length == 1) {
+//     //代表只有一個基數是不合群
+//     return odd[0]; //回傳這個唯一的基數
+//   } else {
+//     //代表只有一個偶數是不合群
+//     return even[0]; //回傳這個唯一的偶數
+//   }
+// }
+
+// console.log(findSomeDifferent([2, 4, 0, 100, 4, 11, 2602, 36])); // 印出 11 基數不合群
+// console.log(findSomeDifferent([160, 3, 1719, 19, 11, 13, -21])); // 印出 160 偶數不合群
+
+// // 編號：008
+// // 程式語言：JavaScript
+// // 題目：傳入一字串，計算得分最高的字
+// //      英文字母 a 得 1 分、b 得 2 分、c 得 3 分，以此類推。
+// //      所有傳入的字都是小寫。
+
+// //想法:
+// //步驟1. 先用split("")分割成一個個詞組成的陣列 就可以用map回傳所有詞的分數陣列
+// //步驟2. 算分數！傳進去每個詞變成分數
+// //步驟3. 有了分數陣列 取最大值,
+// //3-1 可以用sort排列取最後一個值 但是要轉回詞
+// //3-2 用reduce取最大值 再取index, 最後印出相對印的值
+
+// //待解決的問題：
+// //得到最高分數之後回傳相對應的詞
+// function highestScoreWord(input) {
+//   let inputArray = input.split(" "); //分割成一個個詞組成的陣列
+//   let score = (word) => {
+//     //計算分數 傳進一個個詞
+//     let toArray = word.split(""); //把每個詞分割成一個個字
+//     let toCharCode = (ele) => ele.charCodeAt(); //得到每個字的分數
+//     let accSum = (acc, cv) => acc + cv; //計算分數總和
+//     let result = toArray.map(toCharCode).reduce(accSum);
+//     return result;
+//   };
+//   let max = (acc, cv) => {
+//     if (cv > acc) {
+//       return cv;
+//     } else {
+//       return acc;
+//     }
+//   };
+//   let scoreArray = inputArray.map(score); //分數陣列
+//   let highestScore = inputArray.map(score).reduce(max); //最高分的元素
+//   let index = scoreArray.indexOf(highestScore); //最高分元素的index
+//   return inputArray[index]; //回傳最高分的詞
+// }
+
+// console.log(highestScoreWord("lorem ipsum dolor sit amet")); // 印出 ipsum score = 558 index = 1
+// console.log(highestScoreWord("heyn i need a rubygem up to build this")); // 印出 rubygem score = 763 index = 4
+// console.log(highestScoreWord("in time machine there are some bugs")); // 印出 machine 725 index = 2
+
+// 編號：009
+// 程式語言：JavaScript
+// 題目：移除網址中的錨點（Anchor）
+
+function removeAnchor(url) {
+  // 實作寫在這裡
+}
+
+console.log(removeAnchor("5xruby.tw")); // 印出 5xruby.tw
+console.log(removeAnchor("5xruby.tw/#about")); // 印出 5xruby.tw/
+console.log(removeAnchor("5xruby.tw/courses/?page=1#about")); // 印出 5xruby.tw/courses/?page=1
